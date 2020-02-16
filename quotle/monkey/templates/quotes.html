@@ -1,0 +1,28 @@
+{% load static %}
+<head>
+    <link rel="stylesheet" href="{% static 'css/quotes.css' %}">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+</head>
+
+<body>
+
+    <h1>{{mname}}</h1>
+    <br>
+    <br>
+    <br>
+    {% for i in quotes %}
+        <p> {{i|safe}} <p>
+    {% endfor %}
+
+    <script>
+        // $('p').hide().fadeIn(5000);
+        $('hr').animate({width: '100%', opacity: '1'}, {duration: 7000, queue: true});
+
+        // $('p').each(function()
+        // {
+        //     $(this).hide().fadeIn(5000)
+        // });
+
+    </script>
+
+</body>
