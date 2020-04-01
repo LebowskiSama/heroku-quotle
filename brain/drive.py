@@ -10,4 +10,4 @@ options.add_experimental_option('excludeSwitches', ['enable-logging']) #Removes 
 
 options.binary_location = os.environ.get("GOOGLE_CHROME_BIN")
 
-driver = webdriver.Chrome(executable_path=os.environ.get(""), options=options)
+driver = webdriver.Chrome(executable_path=os.environ.get("CHROMEDRIVER_PATH"), options=options)
