@@ -1,0 +1,8 @@
+*{
+    font-family: consolas;
+}
+
+body{
+    background-image: linear-gradient(to right, #3494E6, #EC6EAD);
+    backdrop-filter: blur(50px);
+}

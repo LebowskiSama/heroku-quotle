@@ -12,9 +12,15 @@ def return_data(request):
     search_term = request.POST['search']
 
     quotes = []
- 
-    mname =  scrape.fetch_name(search_term)
+    
+    try:
+        mname, imdbID =  scrape.parse_titles(search_term)
+    except KeyError:
+        return render(request, 'notfound.html')
+        return HttpResponseRedirect('')
+
     dblength = fur.objects.count()
+    
     flag = 0
 
     for i in range(1, dblength+1):
@@ -32,7 +38,12 @@ def return_data(request):
             break
 
     if flag == 0:
-        quotes = scrape.fetch_quotes(search_term)
+        try:
+            quotes = scrape.scrape_quotes(imdbID)
+        except IndexError:
+            return render(request, 'noquotes.html')
+            return HttpResponseRedirect('')
+
         jquotes = json.dumps(quotes)
         new_instance = fur(title=mname, quotes=jquotes)
         new_instance.save()

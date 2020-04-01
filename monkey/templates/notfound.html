@@ -1,0 +1,15 @@
+{% load static %}
+<head>
+    <title>Search</title>
+    <link rel="stylesheet" href="{% static 'css/notfound.css' %}">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"> </script>
+
+</head>
+
+<body>
+
+    <form action="/monkeyList/" method="post" class='title-form'>{% csrf_token %}
+        
+        <h1>Oops... The Movie You Searched For Doesn't Exist Or Your Search Phrase Was Worded Incorrectly</h1>
+
+</body>

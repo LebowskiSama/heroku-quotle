@@ -1,37 +1,32 @@
-from brain.drive import driver
 from bs4 import BeautifulSoup
 from selenium.webdriver.common import keys
 import re
 import time
-from sys import argv
+from urllib import request
+import requests
+import json
+import bs4
 
-def fetch_name(title):
-        
-    driver.get('https://google.com/')
-    soup = BeautifulSoup(driver.page_source, 'html.parser')
-    driver.find_element_by_xpath('//*[@title="Search"]').send_keys(title + ' IMDB' + u'\ue007')
-    
-    #Extract movie/TV_series name
-    soup = BeautifulSoup(driver.page_source, 'html.parser')
-    movie_name = soup.find('h3', class_='LC20lb').get_text()
-    movie_name = movie_name[0:-7]
-    
-    return movie_name
+def parse_titles(string):
 
-def fetch_quotes(title):
-    
-    quotes = []
-    
-    driver.get('https://google.com/')
-    driver.find_element_by_xpath('//*[@title="Search"]').send_keys(title + ' IMDB' + u'\ue007')
+    string = string.replace(' ','+')
+    #Using OMDb API
+    response = request.urlopen('http://www.omdbapi.com/?apikey=d0b356ff&s='+string)
+    data = json.loads(response.read())
+    Search = data['Search']
+    # for item in Search:
+    #     print(item['Title'] + ' (' + item['Year'] + ')')
+    imdbID = (Search[0]['imdbID'])
+    mname = Search[0]['Title'] + ' ' + '(' + Search[0]['Year'] + ')'
+    return mname, imdbID
 
-    #Navigate to quotes page
-    driver.find_element_by_class_name('LC20lb').click()
-    time.sleep(1)
-    driver.get(driver.current_url + 'quotes')
+def scrape_quotes(imdbID):
+
+    page = requests.get('https://www.imdb.com/title/' + imdbID + '/quotes')
 
     #Extract quotes
-    soup = BeautifulSoup(driver.page_source, 'html.parser')
+    quotes = []
+    soup = BeautifulSoup(page.content, 'html.parser')
     containers = soup.findAll('div', class_='sodatext')
     # cnt_len = len(containers) - 1
 
@@ -50,4 +45,4 @@ def fetch_quotes(title):
         quotes[i] = x
         i = i + 1
 
-    return quotes
+    return(quotes)
