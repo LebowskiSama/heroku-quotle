@@ -2,10 +2,10 @@ from django.db import models
 from datetime import date, datetime
 
 class fur(models.Model):
-    
-    title = models.TextField()
+
+    imdbID = models.TextField(unique=True, null=False)
     quotes = models.TextField()
 
     def __str__(self):
 
-        return self.title
+        return self.imdbID
