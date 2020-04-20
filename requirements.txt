@@ -28,3 +28,8 @@ urllib3
 whitenoise
 wincertstore
 wrapt
+<<<<<<< HEAD
+=======
+django-cors-headers
+djangorestframework
+>>>>>>> vue
