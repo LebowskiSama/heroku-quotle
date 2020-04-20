@@ -1,16 +1,10 @@
-let source = {
-  veronica: {
-    search: null,
-    suggestions: [],
-  },
-};
-
 var searchField = new Vue({
   el: "#root",
   vuetify: new Vuetify(),
   data: {
     search: null,
     suggestions: [],
+    quotes: null
   },
   template:`<div>
   <input id="search" v-model="search" placeholder="Pulp Fiction..."></input>
@@ -24,6 +18,9 @@ var searchField = new Vue({
       </v-flex>
     </v-layout>
   </v-container>
+  <div id='quotes'>
+    <p v-for='quote in quotes' :key='quote.id'><span v-html="quote"></span></p>
+  </div>
 </div>`,
   updated: function () {
     axios({
@@ -39,7 +36,7 @@ var searchField = new Vue({
         data: {
           ID: itemid
         }})
-        .then(jsonData => console.log(jsonData.quotes))
+        .then(jsonData => this.quotes=jsonData.quotes)
     }
   }
 });
