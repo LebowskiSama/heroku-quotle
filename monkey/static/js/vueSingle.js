@@ -32,8 +32,14 @@ var searchField = new Vue({
     }).then((response) => (this.suggestions = response.Search));
   },
   methods:{
-    parseChoice: function($itemid){
-      alert($itemid)
+    parseChoice: function(itemid){
+      axios({
+        method: 'post',
+        url: '/monkeyList',
+        data: {
+          ID: itemid
+        }})
+        .then(jsonData => console.log(jsonData))
     }
   }
 });
