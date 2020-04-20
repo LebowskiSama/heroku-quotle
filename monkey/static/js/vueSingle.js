@@ -41,7 +41,11 @@ var searchField = new Vue({
           ID: itemid
         }})
         .then(jsonData => this.quotes=jsonData.quotes)
-        document.getElementById("quotes").scrollIntoView({behavior: "smooth"})
+    },
+  },
+  updated:function(){
+    if(this.quotes!=null){
+      {document.getElementById("quotes").scrollIntoView({behavior: "smooth"})}
+      }
     }
-  }
 });

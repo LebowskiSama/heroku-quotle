@@ -24,8 +24,7 @@ def return_data(request):
     if request.method == 'POST':
         data = json.loads(request.body)
         imdbID = data['ID']
-        print("pacman")
-    
+            
     quotes = []
     
     dblength = fur.objects.count()
