@@ -12,10 +12,16 @@ var searchField = new Vue({
     search: null,
     suggestions: [],
   },
-  template:`
-  <div>
-    <input id="search" v-model="search"></input>
-  </div>`,
+  template:`<div>
+  <input id="search" v-model="search"></input>
+  <v-container>
+  <v-row justify="space-between">
+  <v-col cols="auto">
+  <img v-for="item in suggestions" :key="item.imdID" :src=item.Poster height="300" width="200" contain></img>
+  </v-col>
+  </v-row>
+  </v-container>
+</div>`,
   updated: function () {
     axios({
       method: "get",

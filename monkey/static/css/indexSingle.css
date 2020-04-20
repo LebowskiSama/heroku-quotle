@@ -7,7 +7,7 @@ body{
     color: black;
 }
 
-/* #search{
+#search{
     margin-left: 25%;
     margin-top: 5%;
     width: 50%;
@@ -15,7 +15,7 @@ body{
     border-bottom: 1 px solid;
     padding-left: 15px;
 }
-
+/*
 .suggestions_container{
     display: flex;
     flex-wrap: nowrap;
