@@ -12,7 +12,9 @@ var searchField = new Vue({
     <v-layout row wrap justify="space-between">
       <v-flex xs12 sm6 md4 lg3 v-for="item in suggestions" :key="item.imdbID">
         <v-card width="200" raised class="text-xs-center ma-3" @click="parseChoice(item.imdbID)">
+        <v-expand-transition>
         <img :src="item.Poster" height="300" width="200" contain></img>
+        </v-expand-transition>
         <v-card-subtitle justify-content>{{ item.Title }}</v-card-subtitle>
         </v-card>
       </v-flex>

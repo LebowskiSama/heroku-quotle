@@ -15,6 +15,7 @@ def scrape_quotes(imdbID):
 
     for container in containers:
         quotes.append('<hr>')
+        quotes.append('<br>')
         quotelists = container.findAll('p')
 
         for quotelist in quotelists:
