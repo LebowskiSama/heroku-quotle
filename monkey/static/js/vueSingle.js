@@ -7,7 +7,7 @@ var searchField = new Vue({
     quotes: null
   },
   template:`<div>
-  <input id="search" v-model="search" placeholder="Pulp Fiction..."></input>
+  <input id="search" v-model="search" v-on:input="callOMDB" placeholder="Pulp Fiction..."></input>
   <v-container>
     <v-layout row wrap justify="space-between">
       <v-flex xs12 sm6 md4 lg3 v-for="item in suggestions" :key="item.imdbID">
@@ -22,13 +22,13 @@ var searchField = new Vue({
     <p v-for='quote in quotes' :key='quote.id'><span v-html="quote"></span></p>
   </div>
 </div>`,
-  updated: function () {
-    axios({
-      method: "get",
-      url: "http://www.omdbapi.com/?apikey=d0b356ff&s=" + this.search,
-    }).then((response) => (this.suggestions = response.Search));
-  },
   methods:{
+    callOMDB: function(){
+      axios({
+        method: "get",
+        url: "http://www.omdbapi.com/?apikey=d0b356ff&s=" + this.search,
+      }).then((response) => (this.suggestions = response.Search));
+    },
     parseChoice: function(itemid){
       axios({
         method: 'post',
