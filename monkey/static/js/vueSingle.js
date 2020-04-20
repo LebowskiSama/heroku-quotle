@@ -8,10 +8,10 @@ var searchField = new Vue({
   },
   template:`<div>
   <input id="search" v-model="search" v-on:input="callOMDB" placeholder="Pulp Fiction..."></input>
-  <v-container>
+  <v-container id='options'>
     <v-layout row wrap justify="space-between">
       <v-flex xs12 sm6 md4 lg3 v-for="item in suggestions" :key="item.imdbID">
-        <v-card width="200" raised class="text-xs-center ma-3" @click="parseChoice(item.imdbID)">
+        <v-card raised width="200" raised class="text-xs-center ma-3" @click="parseChoice(item.imdbID)">
         <img :src="item.Poster" height="300" width="200" contain></img>
         <v-card-subtitle justify-content>{{ item.Title }}</v-card-subtitle>
         </v-card>
@@ -37,6 +37,11 @@ var searchField = new Vue({
           ID: itemid
         }})
         .then(jsonData => this.quotes=jsonData.quotes)
+        this.$nextTick(() => { 
+          var objDiv = document.getElementById("quotes");
+          objDiv.scrollIntoView({behavior: "smooth",})
+
+        })
     }
   }
 });
