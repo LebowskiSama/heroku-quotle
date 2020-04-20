@@ -13,13 +13,16 @@ var searchField = new Vue({
     suggestions: [],
   },
   template:`<div>
-  <input id="search" v-model="search"></input>
+  <input id="search" v-model="search" placeholder="Pulp Fiction..."></input>
   <v-container>
-  <v-row justify="space-between">
-  <v-col cols="auto">
-  <img v-for="item in suggestions" :key="item.imdID" :src=item.Poster height="300" width="200" contain></img>
-  </v-col>
-  </v-row>
+    <v-layout row wrap justify="space-between">
+      <v-flex xs12 sm6 md4 lg3 v-for="item in suggestions" :key="item.imdbID">
+        <v-card flat class="text-xs-center ma-3 justify">
+        <img :src="item.Poster" height="300" width="200" contain></img>
+        <v-card-subtitle>{{ item.Title }}</v-card-subtitle>
+        </v-card>
+      </v-flex>
+    </v-layout>
   </v-container>
 </div>`,
   updated: function () {
