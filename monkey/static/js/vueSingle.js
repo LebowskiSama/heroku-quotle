@@ -17,7 +17,7 @@ var searchField = new Vue({
   <v-container>
     <v-layout row wrap justify="space-between">
       <v-flex xs12 sm6 md4 lg3 v-for="item in suggestions" :key="item.imdbID">
-        <v-card raised class="text-xs-center ma-3">
+        <v-card width="200" raised class="text-xs-center ma-3" @click="parseChoice(item.imdbID)">
         <img :src="item.Poster" height="300" width="200" contain></img>
         <v-card-subtitle justify-content>{{ item.Title }}</v-card-subtitle>
         </v-card>
@@ -30,5 +30,10 @@ var searchField = new Vue({
       method: "get",
       url: "http://www.omdbapi.com/?apikey=d0b356ff&s=" + this.search,
     }).then((response) => (this.suggestions = response.Search));
+  },
+  methods:{
+    parseChoice: function($itemid){
+      alert($itemid)
+    }
   }
 });
