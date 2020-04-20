@@ -28,8 +28,9 @@ var searchField = new Vue({
       axios({
         method: "get",
         url: "http://www.omdbapi.com/?apikey=d0b356ff&s=" + this.search,
-      }).then((response) => (this.suggestions = response.Search));
-    },
+      })
+      .then((response) => (this.suggestions=response.Search))
+   },  
     empytyHandle: function(event){
       event.target.src = "https://i.pinimg.com/originals/fe/b0/32/feb032472adaa49c69e7848eefda4d7f.jpg"
     },
