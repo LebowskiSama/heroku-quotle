@@ -39,7 +39,7 @@ var searchField = new Vue({
         data: {
           ID: itemid
         }})
-        .then(jsonData => console.log(jsonData))
+        .then(jsonData => console.log(jsonData.quotes))
     }
   }
 });
