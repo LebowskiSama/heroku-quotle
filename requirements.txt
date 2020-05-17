@@ -12,7 +12,6 @@ django-extensions
 django-heroku
 docopt
 gunicorn
-heroku
 idna
 isort
 lazy-object-proxy
@@ -28,8 +27,5 @@ urllib3
 whitenoise
 wincertstore
 wrapt
-<<<<<<< HEAD
-=======
 django-cors-headers
 djangorestframework
->>>>>>> vue
